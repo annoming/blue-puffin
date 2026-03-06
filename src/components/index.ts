@@ -1,0 +1,1 @@
+export { PuffinAvatar } from './PuffinAvatar';
