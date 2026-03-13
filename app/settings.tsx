@@ -6,7 +6,7 @@ export default function SettingsScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>设置</Text>
-      <Text style={styles.hint}>智谱 API Key 配置、切换其他大模型等将在此实现</Text>
+      <Text style={styles.hint}>消息通知、目标设置等将在此实现</Text>
       <Pressable style={styles.button} onPress={() => router.back()}>
         <Text style={styles.buttonText}>返回</Text>
       </Pressable>
