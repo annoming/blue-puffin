@@ -1,36 +1,62 @@
 import { Tabs } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import { colors } from '@/theme';
+
+/** 与 Puffinfigma 对应：Home, Brain, Users, UserCircle */
+const tabIcons: Record<string, { active: string; inactive: string }> = {
+  index: { active: 'home', inactive: 'home-outline' },
+  coach: { active: 'bulb', inactive: 'bulb-outline' },
+  community: { active: 'people', inactive: 'people-outline' },
+  profile: { active: 'person-circle', inactive: 'person-circle-outline' },
+};
 
 export default function TabLayout() {
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.gray600,
-        headerStyle: { backgroundColor: colors.primary },
-        headerTintColor: colors.white,
-        headerTitleStyle: { fontWeight: '600', fontSize: 18 },
+      screenOptions={({ route }) => {
+        const icons = tabIcons[route.name as keyof typeof tabIcons];
+        return {
+          tabBarActiveTintColor: colors.black,
+          tabBarInactiveTintColor: colors.gray600,
+          tabBarIcon: ({ focused, color, size }) => {
+            if (!icons) return null;
+            const name = focused ? icons.active : icons.inactive;
+            return <Ionicons name={name} size={size ?? 22} color={color} />;
+          },
+          tabBarStyle: {
+            backgroundColor: colors.white,
+            borderTopWidth: 1,
+            borderTopColor: colors.gray200,
+          },
+          tabBarLabelStyle: { fontSize: 12 },
+          headerStyle: { backgroundColor: colors.white },
+          headerTintColor: colors.black,
+          headerTitleStyle: { fontWeight: '500', fontSize: 18 },
+          headerShadowVisible: false,
+        };
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: '步凡',
-          tabBarLabel: '首页',
+          title: '陪跑舱',
+          tabBarLabel: '陪跑舱',
+          headerShown: false,
         }}
       />
       <Tabs.Screen
-        name="run"
+        name="coach"
         options={{
-          title: '开始跑步',
-          tabBarLabel: '跑步',
+          title: 'AI 教练',
+          tabBarLabel: '教练',
+          headerShown: false,
         }}
       />
       <Tabs.Screen
-        name="achievements"
+        name="community"
         options={{
-          title: '成就',
-          tabBarLabel: '成就',
+          title: '跑圈',
+          tabBarLabel: '跑圈',
         }}
       />
       <Tabs.Screen
@@ -38,7 +64,16 @@ export default function TabLayout() {
         options={{
           title: '我的',
           tabBarLabel: '我的',
+          headerShown: false,
         }}
+      />
+      <Tabs.Screen
+        name="run"
+        options={{ href: null }}
+      />
+      <Tabs.Screen
+        name="achievements"
+        options={{ href: null }}
       />
     </Tabs>
   );
