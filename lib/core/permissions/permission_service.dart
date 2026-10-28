@@ -1,59 +1,20 @@
-import 'package:permission_handler/permission_handler.dart' as ph;
-import 'package:geolocator/geolocator.dart';
-import 'dart:io';
+import 'package:permission_handler/permission_handler.dart';
 
 class PermissionService {
-  Future<bool> requestLocationPermission() async {
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      await Geolocator.openLocationSettings();
-      return false;
-    }
+  const PermissionService();
 
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return false;
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      await Geolocator.openAppSettings();
-      return false;
-    }
-
-    return true;
+  Future<bool> requestLocation() async {
+    final status = await Permission.location.request();
+    return status.isGranted;
   }
 
-  Future<bool> requestBackgroundLocationPermission() async {
-    if (!await requestLocationPermission()) {
-      return false;
-    }
-
-    if (Platform.isAndroid) {
-      var status = await ph.Permission.locationAlways.request();
-      if (status.isDenied || status.isPermanentlyDenied) {
-        if (status.isPermanentlyDenied) {
-          await ph.openAppSettings();
-        }
-        return status.isGranted;
-      }
-      return status.isGranted;
-    } else if (Platform.isIOS) {
-      var status = await ph.Permission.locationAlways.request();
-      if (status.isPermanentlyDenied) {
-        await ph.openAppSettings();
-      }
-      return status.isGranted;
-    }
-    return true;
+  Future<bool> requestLocationAlways() async {
+    final status = await Permission.locationAlways.request();
+    return status.isGranted;
   }
 
-  Future<bool> requestAllRunPermissions() async {
-    final locationGranted = await requestLocationPermission();
-    if (!locationGranted) return false;
-    final backgroundGranted = await requestBackgroundLocationPermission();
-    return locationGranted;
+  Future<bool> hasLocation() async {
+    final status = await Permission.location.status;
+    return status.isGranted;
   }
 }
