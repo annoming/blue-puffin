@@ -16,7 +16,10 @@
 | `screens/02-run-result.md` | 结果页、配速图、分段、分享卡、保存失败 |
 | `screens/03-training-plan.md` | 首页今日卡、周视图、任务详情、完成 / 部分完成 / 空错载 |
 | `screens/04-profile.md` | 我的、用户信息、历史列表、Coros 全状态 |
-| `prototype/index.html` | 全部页面与关键状态的静态视觉原型（浏览器打开，可切换深浅色） |
+| `prototype/index.html` | 跑步页 9 状态静态原型（浏览器打开，可切换深浅色） |
+| `prototype/result.html` | 结果页、分享卡、待同步原型 |
+| `prototype/plan.html` | 首页、周视图、任务详情、空错载、休息日原型 |
+| `prototype/profile.html` | 我的、历史、用户信息、Coros 全流程原型 |
 | `assets/README.md` | 图标 / 地图 / 分享卡资源清单与导出规格 |
 
 尺寸口径：设计稿 390×844（@1x），开发按逻辑像素直接取用；导出切图按 @2x/@3x。
