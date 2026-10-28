@@ -207,7 +207,7 @@
 
 - 色彩/间距/圆角以 `ThemeExtension<AppTokens>` 提供，`MaterialApp` 同时注册 `light` 与 `dark` 两套；`themeMode: ThemeMode.system`。
 - 字阶封装为 `AppTextStyles.of(context)`，内部按 `Theme.of(context).brightness` 取色。
-- 运动模式单独一套 `RunTheme`（恒暗），跑步页用 `Theme(data: RunTheme.data)` 包裹，不污染全局主题。
+- 运动模式单独一套 `RunTokens`（`ThemeExtension<RunTokens>`，恒暗）+ `RunTheme.data`，跑步页用 `Theme(data: RunTheme.data)` 包裹，不污染全局主题；进入页面调用 `RunTheme.applySystemUi()` 固定 `SystemUiOverlayStyle.light`。
 - 参考实现见 `design/specs/app_theme.reference.dart`（可直接复制到 `lib/shared/theme/`，由 Frank 落地）。
 
 ---

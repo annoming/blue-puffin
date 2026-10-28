@@ -421,11 +421,44 @@
       </div></div>
     </div>
 
+    <!-- draft expired -->
+    <div class="frame">
+      <div class="frame-label">中断恢复 · 超 24h <em>draft expired</em></div>
+      <div class="phone"><div class="screen run">
+        <div class="sbar"></div>
+        <div class="row" style="padding:0 8px;height:44px;flex:none">
+          <div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div><div class="spacer"></div>
+          <div class="iconbtn"><svg class="ic"><use href="#i-lock"/></svg></div>
+        </div>
+        <div class="map" style="height:360px;flex:none;filter:blur(1px) brightness(.7)">
+          <svg viewBox="0 0 390 360">
+            <rect width="390" height="360" fill="#E9EEF4"/>
+            <path d="M-20 96 L410 52" stroke="#D8E0EA" stroke-width="20"/><path d="M-20 246 L410 300" stroke="#D8E0EA" stroke-width="14"/>
+            <path d="M86 -20 L146 380" stroke="#DEE6EF" stroke-width="12"/><path d="M306 -20 L252 380" stroke="#DEE6EF" stroke-width="12"/>
+          </svg>
+        </div>
+        <div class="spacer"></div>
+        <div class="run-modal-backdrop">
+          <div class="sheet dark">
+            <div class="grab"></div>
+            <div class="row gap8"><svg class="ic s20" style="color:#FFC46B"><use href="#i-clock"/></svg><span class="run-label">检测到未结束的跑步</span><span class="pill" style="margin-left:auto;background:rgba(255,196,107,.16);color:#FFC46B">超过 24 小时</span></div>
+            <div class="h2" style="margin-top:10px">这次跑步无法继续</div>
+            <div class="t14" style="color:#9EB0C4;margin-top:8px">10/27 06:58 开始 · 已记录 8.12 公里 · 52:10</div>
+            <div class="t13" style="color:#FFC46B;margin-top:10px;line-height:20px">超过 24 小时的记录无法继续，但可以保存已完成的数据。</div>
+            <div class="sheet-actions" style="margin-top:24px">
+              <button class="btn" style="background:#FF6B1A">保存并结束</button>
+              <button class="btn ghost" style="color:#FF8A80">放弃记录</button>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
   </div>
 </section>
 
 <div style="max-width:1180px;margin:0 auto 60px;padding:0 28px;font-size:12px;line-height:20px;opacity:.55">
-  说明：跑步页为固定深色运动模式；长按结束 800ms 触发确认；切后台/来电自动暂停且不自动恢复；进程被杀后可恢复本地草稿。
+  说明：跑步页为固定深色运动模式；长按结束 800ms 触发确认；切后台/来电自动暂停且不自动恢复；进程被杀后可恢复本地草稿，草稿超过 24h 只能「保存并结束」或「放弃记录」。
 </div>
 
 <script src="app.js"></script>

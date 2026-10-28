@@ -1,6 +1,7 @@
 // 参考实现：可直接复制到 lib/shared/theme/（由 Frank 落地，不属于 design/ 自动生效代码）。
 // 与 design/specs/01-foundations.md 一一对应；业务代码只允许引用语义 token。
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 @immutable
 class AppTokens extends ThemeExtension<AppTokens> {
@@ -171,6 +172,9 @@ class AppTokens extends ThemeExtension<AppTokens> {
     );
   }
 
+  /// 主题切换插值：25 个颜色 token 全部参与，包含 5 类训练类型色
+  /// （typeEasy / typeTempo / typeLong / typeInterval / typeRest）。
+  /// 新增 token 时必须同步更新构造函数、copyWith 与本方法，避免切换主题时丢色。
   @override
   AppTokens lerp(AppTokens? other, double t) {
     if (other == null) return this;
@@ -196,6 +200,7 @@ class AppTokens extends ThemeExtension<AppTokens> {
       dangerBg: c(dangerBg, other.dangerBg),
       info: c(info, other.info),
       infoBg: c(infoBg, other.infoBg),
+      // 训练类型色：5 类全部插值，主题切换时类型标签不丢失
       typeEasy: c(typeEasy, other.typeEasy),
       typeTempo: c(typeTempo, other.typeTempo),
       typeLong: c(typeLong, other.typeLong),
@@ -323,8 +328,105 @@ class AppTheme {
   }
 }
 
+/// 运动模式专用 token：对应 `01-foundations.md` 的 `run/*`，恒定深色。
+@immutable
+class RunTokens extends ThemeExtension<RunTokens> {
+  final Color bg;
+  final Color mapScrim;
+  final Color text;
+  final Color textSecondary;
+  final Color divider;
+  final Color pause;
+  final Color stop;
+  final Color gpsGood;
+  final Color gpsWeak;
+  final Color gpsLost;
+
+  const RunTokens({
+    required this.bg,
+    required this.mapScrim,
+    required this.text,
+    required this.textSecondary,
+    required this.divider,
+    required this.pause,
+    required this.stop,
+    required this.gpsGood,
+    required this.gpsWeak,
+    required this.gpsLost,
+  });
+
+  static const dark = RunTokens(
+    bg: Color(0xFF071019),
+    mapScrim: Color(0x8C071019),
+    text: Color(0xFFFFFFFF),
+    textSecondary: Color(0xFF9EB0C4),
+    divider: Color(0x1FFFFFFF),
+    pause: Color(0xFFFFC46B),
+    stop: Color(0xFFFF6B60),
+    gpsGood: Color(0xFF4ADE9B),
+    gpsWeak: Color(0xFFFFC46B),
+    gpsLost: Color(0xFFFF6B60),
+  );
+
+  @override
+  RunTokens copyWith({
+    Color? bg,
+    Color? mapScrim,
+    Color? text,
+    Color? textSecondary,
+    Color? divider,
+    Color? pause,
+    Color? stop,
+    Color? gpsGood,
+    Color? gpsWeak,
+    Color? gpsLost,
+  }) {
+    return RunTokens(
+      bg: bg ?? this.bg,
+      mapScrim: mapScrim ?? this.mapScrim,
+      text: text ?? this.text,
+      textSecondary: textSecondary ?? this.textSecondary,
+      divider: divider ?? this.divider,
+      pause: pause ?? this.pause,
+      stop: stop ?? this.stop,
+      gpsGood: gpsGood ?? this.gpsGood,
+      gpsWeak: gpsWeak ?? this.gpsWeak,
+      gpsLost: gpsLost ?? this.gpsLost,
+    );
+  }
+
+  @override
+  RunTokens lerp(RunTokens? other, double t) {
+    if (other == null) return this;
+    Color c(Color a, Color b) => Color.lerp(a, b, t)!;
+    return RunTokens(
+      bg: c(bg, other.bg),
+      mapScrim: c(mapScrim, other.mapScrim),
+      text: c(text, other.text),
+      textSecondary: c(textSecondary, other.textSecondary),
+      divider: c(divider, other.divider),
+      pause: c(pause, other.pause),
+      stop: c(stop, other.stop),
+      gpsGood: c(gpsGood, other.gpsGood),
+      gpsWeak: c(gpsWeak, other.gpsWeak),
+      gpsLost: c(gpsLost, other.gpsLost),
+    );
+  }
+}
+
 /// 运动模式：恒暗，不随系统切换。
+///
+/// 用法：
+/// ```dart
+/// Theme(data: RunTheme.data, child: const RunScreen());
+/// RunTheme.applySystemUi(); // 进入跑步页首帧
+/// ```
 class RunTheme {
+  static const tokens = RunTokens.dark;
+
+  /// 跑步页状态栏/导航栏：浅色图标（深色背景），透明状态栏。
+  static const overlayStyle = SystemUiOverlayStyle.light;
+
   static const bg = Color(0xFF071019);
   static const text = Color(0xFFFFFFFF);
   static const textSecondary = Color(0xFF9EB0C4);
@@ -334,6 +436,18 @@ class RunTheme {
   static const gpsGood = Color(0xFF4ADE9B);
   static const gpsWeak = Color(0xFFFFC46B);
   static const gpsLost = Color(0xFFFF6B60);
+
+  static void applySystemUi() {
+    SystemChrome.setSystemUIOverlayStyle(
+      overlayStyle.copyWith(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+        systemNavigationBarColor: bg,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+    );
+  }
 
   static ThemeData get data => ThemeData(
         useMaterial3: true,
@@ -345,11 +459,17 @@ class RunTheme {
           onSurface: text,
         ),
         fontFamilyFallback: const ['PingFang SC', 'Noto Sans SC'],
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
         textTheme: const TextTheme(
           displayLarge: AppTextStyles.displayXl,
           headlineLarge: AppTextStyles.titleXl,
           bodyLarge: AppTextStyles.bodyL,
           bodyMedium: AppTextStyles.bodyM,
         ),
+        extensions: const [RunTokens.dark],
       );
 }

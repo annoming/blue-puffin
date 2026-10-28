@@ -84,7 +84,7 @@
 
 - `AppTheme.lightTheme()` / `AppTheme.darkTheme()`，`ColorScheme` 使用 `fromSeed(seedColor: Color(0xFF1463E6))` 后再覆盖关键色，保证 Material 组件一致。
 - 间距/圆角/字阶用 `ThemeExtension<AppTokens>`（见参考文件）。
-- 跑步页用 `RunTheme.data` 包裹；地图/分享卡固定深色。
+- 跑步页用 `RunTheme.data` 包裹（内含 `RunTokens` 的 `run/*` 全量映射）；进入页面调用 `RunTheme.applySystemUi()`，状态栏/导航栏使用 `SystemUiOverlayStyle.light`；地图/分享卡固定深色。
 
 ### 4.2 组件映射
 
