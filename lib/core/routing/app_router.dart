@@ -8,7 +8,7 @@ import '../../features/run/presentation/pages/run_history_page.dart';
 import '../../features/profile/presentation/screens/profile_form_screen.dart';
 import '../../features/sync/presentation/screens/coros_sync_screen.dart';
 import '../../features/training/presentation/screens/today_training_screen.dart';
-import '../../features/training/presentation/screens/training_plan_screen.dart';
+import '../../features/training/presentation/screens/weekly_plan_screen.dart';
 
 class AppRouter {
   const AppRouter();
@@ -60,7 +60,7 @@ class AppRouter {
       ),
       GoRoute(
         path: '/training/plan',
-        builder: (context, state) => const TrainingPlanScreen(),
+        builder: (context, state) => const WeeklyPlanScreen(),
       ),
     ],
   );
