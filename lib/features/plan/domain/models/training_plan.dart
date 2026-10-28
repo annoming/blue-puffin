@@ -117,6 +117,9 @@ class TrainingPlan {
   final List<PlanSession> sessions;
   final DateTime generatedAt;
 
+  /// 同一周内重新生成的版本号，从 1 开始递增。
+  final int version;
+
   const TrainingPlan({
     required this.weekStart,
     required this.baselineWeeklyKm,
@@ -129,7 +132,23 @@ class TrainingPlan {
     required this.safetyTips,
     required this.sessions,
     required this.generatedAt,
+    this.version = 1,
   });
+
+  TrainingPlan withVersion(int version) => TrainingPlan(
+        weekStart: weekStart,
+        baselineWeeklyKm: baselineWeeklyKm,
+        targetWeeklyKm: targetWeeklyKm,
+        conservativeFactor: conservativeFactor,
+        volumeSource: volumeSource,
+        hasInjuryHistory: hasInjuryHistory,
+        goalSummary: goalSummary,
+        volumeExplanation: volumeExplanation,
+        safetyTips: safetyTips,
+        sessions: sessions,
+        generatedAt: generatedAt,
+        version: version,
+      );
 
   DateTime get weekEnd => weekStart.add(const Duration(days: 6));
 
@@ -162,6 +181,7 @@ class TrainingPlan {
             id: 'plan_${_compactDate(session.date)}_${session.type.code}',
             title: session.title,
             type: session.type.code,
+            date: session.date,
             distanceKm: session.distanceKm.round(),
             durationMin: session.durationMin,
             description: session.description,
@@ -183,6 +203,7 @@ class TrainingPlan {
         'safetyTips': safetyTips,
         'sessions': sessions.map((PlanSession session) => session.toJson()).toList(),
         'generatedAt': generatedAt.toIso8601String(),
+        'version': version,
       };
 
   factory TrainingPlan.fromJson(Map<String, dynamic> json) {
@@ -206,6 +227,7 @@ class TrainingPlan {
       generatedAt: DateTime.parse(
         json['generatedAt'] as String? ?? DateTime.now().toIso8601String(),
       ),
+      version: (json['version'] as num?)?.toInt() ?? 1,
     );
   }
 }
@@ -226,3 +248,16 @@ String _compactDate(DateTime date) {
 }
 
 String _twoDigits(int value) => value.toString().padLeft(2, '0');
+
+/// 生成计划/检查计划时统一的「一周开始」口径：周一 00:00。
+DateTime startOfWeek(DateTime date) {
+  final DateTime day = DateTime(date.year, date.month, date.day);
+  return day.subtract(Duration(days: day.weekday - 1));
+}
+
+bool isSameDay(DateTime? a, DateTime? b) {
+  if (a == null || b == null) return false;
+  return a.year == b.year && a.month == b.month && a.day == b.day;
+}
+
+bool isSameWeek(DateTime a, DateTime b) => startOfWeek(a) == startOfWeek(b);
