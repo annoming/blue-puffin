@@ -130,3 +130,35 @@ lib/core/
 └── utils/         # 工具类
 ```
 上文描述的基础设施已按模块落地，后续按需扩展各子模块实现。
+
+
+## 更新：与现有 lib/ 对应关系（真实目录）及实现状态
+当前实际目录结构（已存在）：
+```
+lib/core/
+├── api/           # API相关封装（待实现）
+├── config/        # 应用配置（已实现：app_config.dart）
+├── di/            # 依赖注入（预留）
+├── network/       # 网络层（已实现：dio_client.dart）
+├── permissions/   # 权限管理（已实现：permission_service.dart，含向后兼容）
+├── routing/       # 路由配置（已实现：app_router.dart）
+├── services/      # 通用服务（预留）
+├── storage/       # 本地存储（预留 IsarService，已引入 isar 依赖）
+├── theme/         # 主题配置（已存在）
+└── utils/         # 工具类（已实现：app_logger.dart）
+```
+
+### shared/ 规划
+```
+lib/shared/
+├── widgets/       # 通用组件（预留）
+├── theme/         # 主题资源（预留）
+└── constants/     # 全局常量（预留）
+```
+
+**状态标注**：已实现 = config/network/permissions/routing/utils/core.dart；预留 = api/di/services/storage(细化)/shared/*。`IsarService` 与 `StorageService` 边界见下文。
+
+## 存储边界：IsarService vs StorageService
+- **StorageService（轻量配置）**：基于 `SharedPreferences`，用于键值对配置（首次引导、主题、权限提示、简单开关等）。位置：`lib/core/storage/storage_service.dart`（封装）。
+- **IsarService（结构化数据）**：基于 `Isar`，用于结构化持久化（跑步记录、轨迹点、训练计划、用户建档等）。位置：`lib/core/storage/isar_service.dart`（预留实现）。
+- **原则**：严禁混用。配置类用 StorageService，实体数据用 IsarService。两套 API 各司其职，避免双套存储语义混淆。
