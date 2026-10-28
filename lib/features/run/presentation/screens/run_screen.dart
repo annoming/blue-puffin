@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/services/location_service.dart';
 import '../../../../core/permissions/permission_service.dart';
 import '../../../training/domain/providers/training_provider.dart';
-import '../../domain/providers/run_provider.dart';
 
 class RunScreen extends ConsumerStatefulWidget {
   final Map<String, dynamic>? extra;
