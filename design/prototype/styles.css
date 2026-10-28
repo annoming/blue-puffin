@@ -877,6 +877,42 @@ section.block {
 
 .note { font-size: 12px; line-height: 18px; color: var(--text3); }
 
+.topbar nav a.on { opacity: 1; font-weight: 600; color: var(--brand); }
+
+.t15 { font-size: 15px; line-height: 22px; }
+
+.ic.s36 { width: 36px; height: 36px; }
+
+.btn.ghost.danger { color: var(--danger); }
+
+.scrollarea { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; }
+.scrollarea::-webkit-scrollbar { display: none; }
+
+.field { margin-top: 16px; }
+.field label { display: block; font-size: 12px; color: var(--text3); margin-bottom: 8px; }
+.field .input {
+  min-height: 52px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  padding: 14px 14px;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+}
+.field .input .unit { margin-left: 4px; font-size: 13px; color: var(--text3); }
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--brand-soft);
+  border-top-color: var(--brand);
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
 @media (max-width: 900px) {
   .phone { transform: scale(0.92); transform-origin: top left; }
   section.block { padding-left: 16px; padding-right: 16px; }
