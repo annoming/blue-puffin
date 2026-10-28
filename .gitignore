@@ -6,7 +6,6 @@
 .pub-cache/
 .pub/
 build/
-*.lock
 
 # IDE
 .idea/
@@ -36,3 +35,5 @@ android/**/GeneratedPluginRegistrant.java
 # Misc
 .DS_Store
 *.log
+
+# 依赖锁定文件需入库（应用类项目）
