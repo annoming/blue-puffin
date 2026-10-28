@@ -22,6 +22,18 @@ class LocationService {
     return true;
   }
 
+  Future<LocationPermission> getPermissionStatus() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return LocationPermission.denied;
+    }
+    return await Geolocator.checkPermission();
+  }
+
+  Future<LocationPermission> requestPermission() async {
+    return await Geolocator.requestPermission();
+  }
+
   Future<Position> getCurrentPosition() async {
     return await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
@@ -30,9 +42,17 @@ class LocationService {
 
   Stream<Position> getPositionStream() {
     const LocationSettings locationSettings = LocationSettings(
-      accuracy: LocationAccuracy.high,
-      distanceFilter: 5, // update every 5 meters
+      accuracy: LocationAccuracy.bestForNavigation,
+      distanceFilter: 3,
     );
     return Geolocator.getPositionStream(locationSettings: locationSettings);
+  }
+
+  Future<void> openAppSettings() async {
+    await Geolocator.openAppSettings();
+  }
+
+  Future<void> openLocationSettings() async {
+    await Geolocator.openLocationSettings();
   }
 }

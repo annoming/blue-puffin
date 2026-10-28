@@ -3,7 +3,7 @@ import 'package:isar/isar.dart';
 part 'run_record.g.dart';
 
 @collection
-class RunRecord {
+class RunRecordEntity {
   Id id = Isar.autoIncrement;
 
   @Index()
@@ -23,11 +23,14 @@ class RunRecord {
   List<DateTime> timestamps = [];
 
   bool isPaused = false;
-  List<RunPause> pauses = [];
+  List<RunPauseEmbedded> pauses = [];
+
+  String? trainingTaskId;
+  bool associatedWithTraining = false;
 }
 
 @embedded
-class RunPause {
+class RunPauseEmbedded {
   DateTime? startPause;
   DateTime? endPause;
 }
