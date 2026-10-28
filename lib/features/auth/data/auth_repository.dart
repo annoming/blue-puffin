@@ -15,7 +15,6 @@ class AuthRepository {
 
   Future<UserModel?> registerWithEmail(String email, String password) async {
     final db = await _db;
-    // Check if user exists
     final existing = await db.userModels.filter().emailEqualTo(email).findFirst();
     if (existing != null) {
       throw Exception('User with this email already exists');
@@ -75,5 +74,10 @@ class AuthRepository {
   Future<UserModel?> getUserById(int id) async {
     final db = await _db;
     return await db.userModels.get(id);
+  }
+
+  Future<void> logout() async {
+    // 本地模式：登出操作（可清理登录态）
+    return;
   }
 }
