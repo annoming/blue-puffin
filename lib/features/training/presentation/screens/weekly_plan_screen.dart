@@ -80,7 +80,13 @@ class _WeeklyPlanScreenState extends ConsumerState<WeeklyPlanScreen> {
       case _SessionAction.startRun:
         await notifier.setActiveTaskId(task.id);
         if (!mounted) return;
-        context.push('/run');
+        context.push(
+          '/run',
+          extra: <String, dynamic>{
+            'fromTraining': true,
+            'taskId': task.id,
+          },
+        );
         break;
       case _SessionAction.complete:
         await notifier.markCompleted(task.id);

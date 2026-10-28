@@ -34,7 +34,13 @@ class _TrainingTaskDetailScreenState
   Future<void> _startRun(TrainingTask task) async {
     await ref.read(trainingPlanProvider.notifier).setActiveTaskId(task.id);
     if (!mounted) return;
-    context.push('/run');
+    context.push(
+      '/run',
+      extra: <String, dynamic>{
+        'fromTraining': true,
+        'taskId': task.id,
+      },
+    );
   }
 
   @override
