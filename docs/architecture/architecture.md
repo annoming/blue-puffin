@@ -114,3 +114,19 @@ lib/
 - 手表 SDK 集成需原生代码配合，当前仅做架构设计和接口预留
 
 <!-- archive: ANNO-3, Arthur, 2026-10-28 -->
+
+## 更新：与现有 lib/ 对应关系（真实目录）
+当前实际目录结构（已存在）：
+```
+lib/core/
+├── api/           # API相关封装
+├── config/        # 应用配置
+├── di/            # 依赖注入
+├── network/       # 网络层（Dio）
+├── permissions/   # 权限管理
+├── routing/       # 路由配置
+├── services/      # 通用服务
+├── storage/       # 本地存储（含 isar_service）
+└── utils/         # 工具类
+```
+上文描述的基础设施已按模块落地，后续按需扩展各子模块实现。

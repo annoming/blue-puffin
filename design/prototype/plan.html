@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>训练计划 · 步凡设计原型</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header id="topbar"></header>
+
+<div class="intro">
+  <h1>03 · 训练计划 Training Plan</h1>
+  <p>首页今日任务卡、周视图、任务详情、完成 / 部分完成 / 休息日，以及空计划、生成失败、加载骨架。本迭代计划只读，不提供手动编辑或 AI 调整入口。</p>
+</div>
+
+<section class="block">
+  <div class="grid">
+
+    <!-- home -->
+    <div class="frame">
+      <div class="frame-label">首页 · 今日任务卡 <em>/</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="page" style="padding-top:6px">
+          <div class="row" style="height:40px">
+            <div class="t13 ter">10月28日 周三</div>
+            <div class="spacer"></div>
+            <div class="iconbtn" style="width:40px"><svg class="ic s20"><use href="#i-bell"/></svg></div>
+            <div class="iconbtn" style="width:40px"><svg class="ic s20"><use href="#i-person"/></svg></div>
+          </div>
+          <div class="h1" style="margin-top:2px">早上好，跑者</div>
+          <div class="t14 muted" style="margin-top:4px">距离目标赛事还有 18 天</div>
+
+          <div class="card" style="margin-top:16px;height:168px">
+            <div class="row">
+              <span class="chip easy"><span class="cdot"></span>轻松跑</span>
+              <div class="spacer"></div>
+              <span class="t12 ter">第 3 周 · 周三</span>
+            </div>
+            <div class="h2" style="margin-top:12px">有氧轻松跑 10 公里</div>
+            <div class="row gap4" style="margin-top:8px;align-items:baseline">
+              <span class="num" style="font-size:36px;font-weight:700;line-height:40px">10.0</span>
+              <span class="t14 muted">公里 · 约 60 分钟</span>
+            </div>
+            <div style="margin-top:12px;background:var(--sunken);border-radius:12px;height:44px;display:flex;align-items:center;gap:10px;padding:0 12px">
+              <span style="width:3px;height:28px;border-radius:3px;background:var(--brand)"></span>
+              <span class="t14 muted" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">保持能说话的配速，心率控制在 2 区</span>
+            </div>
+            <div class="row" style="margin-top:12px">
+              <div class="row gap6">
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--brand)"></span>
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--brand)"></span>
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--brand)"></span>
+                <span style="width:6px;height:6px;border-radius:50%;border:2px solid var(--brand)"></span>
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--border)"></span>
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--border)"></span>
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--border)"></span>
+              </div>
+              <div class="spacer"></div>
+              <span class="t13 w6" style="color:var(--brand)">查看详情 ›</span>
+            </div>
+          </div>
+
+          <button class="btn accent" style="margin-top:16px">开始跑步</button>
+
+          <div class="row" style="margin-top:24px">
+            <div class="h3">本周进度</div><div class="spacer"></div>
+            <span class="t13 w6" style="color:var(--brand)">查看计划 ›</span>
+          </div>
+          <div class="card" style="margin-top:10px;height:96px;display:flex;align-items:center;gap:14px">
+            <div class="ring-wrap"><div class="ring" style="background:conic-gradient(var(--brand) 270deg, var(--ring-track) 0)"></div><span>3/4</span></div>
+            <div style="flex:1">
+              <div class="t16 w6">已完成 3 次 · 32.4 公里</div>
+              <div class="progressbar" style="margin-top:10px"><i style="width:75%"></i></div>
+              <div class="t12 ter" style="margin-top:6px">本周目标 40 公里 · 完成 81%</div>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:20px">
+            <div class="h3">最近跑步</div><div class="spacer"></div>
+            <span class="t13 w6" style="color:var(--brand)">查看全部 ›</span>
+          </div>
+          <div class="row" style="height:52px;border-bottom:1px solid var(--border-subtle)">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--easy)"></span>
+            <span class="t16 w5" style="margin-left:10px">10/27 夜跑</span>
+            <div class="spacer"></div><span class="t13 muted num">6.42 km · 5'57"</span>
+          </div>
+          <div class="row" style="height:52px">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--easy)"></span>
+            <span class="t16 w5" style="margin-left:10px">10/26 轻松跑</span>
+            <div class="spacer"></div><span class="t13 muted num">8.10 km · 6'06"</span>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav">
+          <div class="tab active"><svg class="ic"><use href="#i-home"/></svg>首页</div>
+          <div class="tab"><svg class="ic"><use href="#i-calendar"/></svg>训练</div>
+          <div class="tab"><svg class="ic"><use href="#i-route"/></svg>记录</div>
+          <div class="tab"><svg class="ic"><use href="#i-person"/></svg>我的</div>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- home completed -->
+    <div class="frame">
+      <div class="frame-label">首页 · 今日已完成 <em>completed</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="page" style="padding-top:6px">
+          <div class="row" style="height:40px">
+            <div class="t13 ter">10月28日 周三</div><div class="spacer"></div>
+            <div class="iconbtn" style="width:40px"><svg class="ic s20"><use href="#i-bell"/></svg></div>
+            <div class="iconbtn" style="width:40px"><svg class="ic s20"><use href="#i-person"/></svg></div>
+          </div>
+          <div class="h1" style="margin-top:2px">早上好，跑者</div>
+          <div class="t14 muted" style="margin-top:4px">今天也完成得很漂亮</div>
+
+          <div class="card" style="margin-top:16px;height:168px;position:relative">
+            <div style="position:absolute;top:10px;left:10px;width:22px;height:22px;border-radius:50%;background:var(--success);color:#fff;display:grid;place-items:center;border:2px solid var(--surface)">
+              <svg class="ic s14"><use href="#i-check"/></svg>
+            </div>
+            <div class="row" style="padding-left:16px">
+              <span class="chip easy"><span class="cdot"></span>轻松跑</span>
+              <div class="spacer"></div>
+              <span class="pill success">已完成</span>
+            </div>
+            <div class="h2" style="margin-top:12px">有氧轻松跑 10 公里</div>
+            <div class="row gap4" style="margin-top:8px;align-items:baseline">
+              <span class="num" style="font-size:36px;font-weight:700;line-height:40px">10.42</span>
+              <span class="t14 muted">公里 · 1:02:33</span>
+            </div>
+            <div style="margin-top:12px;background:var(--success-bg);border-radius:12px;height:44px;display:flex;align-items:center;gap:10px;padding:0 12px">
+              <span style="width:3px;height:28px;border-radius:3px;background:var(--success)"></span>
+              <span class="t14" style="color:var(--success)">完成度 104% · 配速稳定，状态不错</span>
+            </div>
+            <div class="row" style="margin-top:12px">
+              <div class="t12 ter">10/28 07:12 · 已关联记录</div>
+              <div class="spacer"></div>
+              <span class="t13 w6" style="color:var(--brand)">查看记录 ›</span>
+            </div>
+          </div>
+
+          <button class="btn accent" style="margin-top:16px;background:var(--surface);color:var(--brand);border:1px solid var(--border)">再跑一次</button>
+
+          <div class="row" style="margin-top:24px"><div class="h3">本周进度</div><div class="spacer"></div><span class="t13 w6" style="color:var(--brand)">查看计划 ›</span></div>
+          <div class="card" style="margin-top:10px;height:96px;display:flex;align-items:center;gap:14px">
+            <div class="ring-wrap"><div class="ring" style="background:conic-gradient(var(--brand) 360deg, var(--ring-track) 0)"></div><span>4/4</span></div>
+            <div style="flex:1">
+              <div class="t16 w6">本周 4 次全部完成</div>
+              <div class="progressbar" style="margin-top:10px"><i style="width:100%"></i></div>
+              <div class="t12 ter" style="margin-top:6px">累计 42.6 公里 · 超过目标</div>
+            </div>
+          </div>
+          <div class="row" style="margin-top:20px"><div class="h3">最近跑步</div><div class="spacer"></div><span class="t13 w6" style="color:var(--brand)">查看全部 ›</span></div>
+          <div class="row" style="height:52px;border-bottom:1px solid var(--border-subtle)">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--easy)"></span>
+            <span class="t16 w5" style="margin-left:10px">今天 晨跑</span><div class="spacer"></div><span class="t13 muted num">10.42 km · 5'59"</span>
+          </div>
+          <div class="row" style="height:52px">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--easy)"></span>
+            <span class="t16 w5" style="margin-left:10px">10/27 夜跑</span><div class="spacer"></div><span class="t13 muted num">6.42 km · 5'57"</span>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav">
+          <div class="tab active"><svg class="ic"><use href="#i-home"/></svg>首页</div>
+          <div class="tab"><svg class="ic"><use href="#i-calendar"/></svg>训练</div>
+          <div class="tab"><svg class="ic"><use href="#i-route"/></svg>记录</div>
+          <div class="tab"><svg class="ic"><use href="#i-person"/></svg>我的</div>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- week -->
+    <div class="frame">
+      <div class="frame-label">周视图 · 含部分完成 <em>/training/plan</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar">
+          <div class="title">训练计划</div><div class="spacer"></div>
+          <div class="iconbtn"><svg class="ic"><use href="#i-refresh"/></svg></div>
+        </div>
+        <div class="page">
+          <div class="weeknav" style="padding:0">
+            <div class="chev"><svg class="ic"><use href="#i-chev-left"/></svg></div>
+            <div class="mid">10月27日 - 11月2日 <span class="pill brand" style="margin-left:4px">本周</span></div>
+            <div class="chev"><svg class="ic"><use href="#i-chev"/></svg></div>
+          </div>
+          <div class="t14 muted" style="margin-top:2px">本周 3/4 次 · 32.4 / 40 km</div>
+
+          <div class="card" style="margin-top:12px;padding:0;overflow:hidden">
+            <div class="dayrow done">
+              <span class="bar"></span>
+              <div class="date"><span class="t12 ter">周一</span><span class="t14 w6">10/27</span></div>
+              <div class="body"><div class="row gap6"><span style="width:8px;height:8px;border-radius:50%;background:var(--easy)"></span><span class="t16 w6" style="color:var(--text2)">轻松跑</span></div><span class="t13 muted">8.0 km · 49:30</span></div>
+              <div class="end" style="color:var(--success)"><svg class="ic s20"><use href="#i-check-circle"/></svg></div>
+            </div>
+            <div class="dayrow today">
+              <span class="bar"></span>
+              <div class="date"><span class="t12" style="color:var(--brand)">周二</span><span class="t14 w6" style="color:var(--brand)">10/28</span></div>
+              <div class="body"><div class="row gap6"><span style="width:8px;height:8px;border-radius:50%;background:var(--easy)"></span><span class="t16 w6">轻松跑</span></div><span class="t13 muted">10.0 km · 约 60 分钟</span></div>
+              <div class="end" style="color:var(--brand)"><svg class="ic s20"><use href="#i-chev"/></svg></div>
+            </div>
+            <div class="dayrow">
+              <span class="bar"></span>
+              <div class="date"><span class="t12 ter">周三</span><span class="t14 w6">10/29</span></div>
+              <div class="body"><div class="row gap6"><span style="width:8px;height:8px;border-radius:50%;background:var(--tempo)"></span><span class="t16 w6">节奏跑</span></div><span class="t13 muted">6.0 km · 约 35 分钟</span></div>
+              <div class="end"><svg class="ic s20"><use href="#i-chev"/></svg></div>
+            </div>
+            <div class="dayrow">
+              <span class="bar"></span>
+              <div class="date"><span class="t12 ter">周四</span><span class="t14 w6">10/30</span></div>
+              <div class="body"><div class="row gap6"><span style="width:8px;height:8px;border-radius:50%;background:var(--rest)"></span><span class="t16 w6">休息</span></div><span class="t13 muted">恢复日 · 建议拉伸</span></div>
+              <div class="end"><svg class="ic s20"><use href="#i-chev"/></svg></div>
+            </div>
+            <div class="dayrow">
+              <span class="bar"></span>
+              <div class="date"><span class="t12 ter">周五</span><span class="t14 w6">10/31</span></div>
+              <div class="body">
+                <div class="row gap6"><span style="width:8px;height:8px;border-radius:50%;background:var(--interval)"></span><span class="t16 w6">间歇跑</span><span class="pill warning" style="margin-left:2px">部分完成</span></div>
+                <span class="t13 muted">8 × 400m · 完成度 65%</span>
+              </div>
+              <div class="end" style="color:var(--warning)"><svg class="ic s20"><use href="#i-check-circle"/></svg></div>
+            </div>
+            <div class="dayrow">
+              <span class="bar"></span>
+              <div class="date"><span class="t12 ter">周六</span><span class="t14 w6">11/01</span></div>
+              <div class="body"><div class="row gap6"><span style="width:8px;height:8px;border-radius:50%;background:var(--long)"></span><span class="t16 w6">长距离</span></div><span class="t13 muted">18.0 km · 约 120 分钟</span></div>
+              <div class="end"><svg class="ic s20"><use href="#i-chev"/></svg></div>
+            </div>
+            <div class="dayrow">
+              <span class="bar"></span>
+              <div class="date"><span class="t12 ter">周日</span><span class="t14 w6">11/02</span></div>
+              <div class="body"><div class="row gap6"><span style="width:8px;height:8px;border-radius:50%;background:var(--rest)"></span><span class="t16 w6">休息</span></div><span class="t13 muted">恢复日 · 建议拉伸</span></div>
+              <div class="end"><svg class="ic s20"><use href="#i-chev"/></svg></div>
+            </div>
+          </div>
+
+          <div class="card sunken" style="margin-top:16px;padding:12px 16px">
+            <div class="t14 w6">计划说明</div>
+            <div class="t13 muted" style="margin-top:4px">基于周跑量 30 km、全马目标 3:30 生成</div>
+            <div class="t12 ter" style="margin-top:4px">最后更新 10/27 · 规则版 v1</div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav">
+          <div class="tab"><svg class="ic"><use href="#i-home"/></svg>首页</div>
+          <div class="tab active"><svg class="ic"><use href="#i-calendar"/></svg>训练</div>
+          <div class="tab"><svg class="ic"><use href="#i-route"/></svg>记录</div>
+          <div class="tab"><svg class="ic"><use href="#i-person"/></svg>我的</div>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- task detail -->
+    <div class="frame">
+      <div class="frame-label">任务详情 <em>/training/task/:id</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar">
+          <div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div><div class="spacer"></div>
+          <div class="iconbtn"><svg class="ic"><use href="#i-more"/></svg></div>
+        </div>
+        <div class="page">
+          <div class="row">
+            <span class="chip easy"><span class="cdot"></span>轻松跑</span>
+            <span class="t12 ter" style="margin-left:8px">第 3 周 · 周三</span>
+          </div>
+          <div class="h1" style="margin-top:12px">有氧轻松跑 10 公里</div>
+          <div class="t14 muted" style="margin-top:6px">10月28日 · 建议 07:00 前完成</div>
+
+          <div class="card" style="margin-top:16px;padding:14px 0">
+            <div class="row">
+              <div class="stat-s" style="flex:1"><div class="v num">10.0<span style="font-size:11px;color:var(--text3)"> km</span></div><div class="k">距离</div></div>
+              <div class="stat-s" style="flex:1"><div class="v num">60<span style="font-size:11px;color:var(--text3)"> 分钟</span></div><div class="k">预计时长</div></div>
+              <div class="stat-s" style="flex:1"><div class="v num">5'50"</div><div class="k">目标配速</div></div>
+            </div>
+          </div>
+
+          <div class="h3" style="margin-top:24px">训练目标</div>
+          <div class="t16" style="margin-top:8px;color:var(--text2)">建立有氧基础，保持轻松可对话的强度，为本周长距离做准备。</div>
+
+          <div class="h3" style="margin-top:24px">步凡提示</div>
+          <div style="margin-top:8px;background:var(--brand-soft);border-radius:12px;padding:16px">
+            <div class="row gap8">
+              <span style="width:20px;height:20px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center"><svg class="ic s14"><use href="#i-puffin"/></svg></span>
+              <span class="t13 w6" style="color:var(--brand)">步凡提示</span>
+            </div>
+            <div class="t14" style="margin-top:8px;line-height:23px">今天以能完整说话的配速完成，前 2 公里可以再慢 10 秒。如果感觉疲劳或睡眠不足，可缩短至 8 公里，质量比距离更重要。</div>
+          </div>
+
+          <div class="h3" style="margin-top:20px">跑前准备</div>
+          <div class="row gap10" style="margin-top:10px">
+            <span style="width:20px;height:20px;border-radius:50%;background:var(--sunken);display:grid;place-items:center;font-size:11px;font-weight:600;color:var(--text2)">1</span>
+            <span class="t14 muted">动态热身 5 分钟（高抬腿、开合跳）</span>
+          </div>
+          <div class="row gap10" style="margin-top:8px">
+            <span style="width:20px;height:20px;border-radius:50%;background:var(--sunken);display:grid;place-items:center;font-size:11px;font-weight:600;color:var(--text2)">2</span>
+            <span class="t14 muted">出发前确认 GPS 已定位</span>
+          </div>
+          <div class="row gap10" style="margin-top:8px">
+            <span style="width:20px;height:20px;border-radius:50%;background:var(--sunken);display:grid;place-items:center;font-size:11px;font-weight:600;color:var(--text2)">3</span>
+            <span class="t14 muted">超过 60 分钟请携带补给</span>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="bottom-fixed"><button class="btn accent">开始跑步</button></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- task completed -->
+    <div class="frame">
+      <div class="frame-label">任务详情 · 已完成 <em>completed detail</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar">
+          <div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div><div class="spacer"></div>
+          <div class="iconbtn"><svg class="ic"><use href="#i-more"/></svg></div>
+        </div>
+        <div class="page">
+          <div class="row">
+            <span class="chip easy"><span class="cdot"></span>轻松跑</span>
+            <span class="pill success" style="margin-left:8px">已完成</span>
+            <span class="spacer"></span><span class="t12 ter">第 3 周 · 周三</span>
+          </div>
+          <div class="h1" style="margin-top:12px">有氧轻松跑 10 公里</div>
+          <div class="t14 muted" style="margin-top:6px">10月28日 07:12 完成</div>
+
+          <div class="card" style="margin-top:16px;padding:14px 0">
+            <div class="row">
+              <div class="stat-s" style="flex:1"><div class="v num">10.0<span style="font-size:11px;color:var(--text3)"> km</span></div><div class="k">目标距离</div></div>
+              <div class="stat-s" style="flex:1"><div class="v num">60<span style="font-size:11px;color:var(--text3)"> 分钟</span></div><div class="k">预计时长</div></div>
+              <div class="stat-s" style="flex:1"><div class="v num">5'50"</div><div class="k">目标配速</div></div>
+            </div>
+          </div>
+
+          <div class="h3" style="margin-top:24px">完成记录</div>
+          <div class="card" style="margin-top:10px;padding:12px;display:flex;align-items:center;gap:12px">
+            <div class="iconbox" style="background:var(--success-bg);color:var(--success)"><svg class="ic s20"><use href="#i-route"/></svg></div>
+            <div style="flex:1">
+              <div class="t16 w6">10/28 07:12 · 晨跑</div>
+              <div class="t13 muted num">10.42 公里 · 1:02:33 · 5'59"</div>
+            </div>
+            <svg class="ic s20" style="color:var(--text3)"><use href="#i-chev"/></svg>
+          </div>
+
+          <div class="h3" style="margin-top:20px">步凡提示</div>
+          <div style="margin-top:8px;background:var(--brand-soft);border-radius:12px;padding:16px">
+            <div class="row gap8">
+              <span style="width:20px;height:20px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center"><svg class="ic s14"><use href="#i-puffin"/></svg></span>
+              <span class="t13 w6" style="color:var(--brand)">步凡提示</span>
+            </div>
+            <div class="t14" style="margin-top:8px;line-height:23px">完成度 104%，配速比目标快 9 秒，但后 2 公里略有掉速。明天节奏跑注意前段不要过快，把体力留到最后。</div>
+          </div>
+
+          <div class="row gap8" style="margin-top:20px">
+            <span class="pill neutral">完成度 104%</span>
+            <span class="t12 ter">距离 10.42 / 10.0 km</span>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="bottom-fixed">
+          <button class="btn disabled">已完成</button>
+          <button class="btn ghost" style="margin-top:4px">查看跑步记录</button>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- rest day -->
+    <div class="frame">
+      <div class="frame-label">首页 · 休息日 <em>rest day</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="page" style="padding-top:6px">
+          <div class="row" style="height:40px">
+            <div class="t13 ter">10月30日 周五</div><div class="spacer"></div>
+            <div class="iconbtn" style="width:40px"><svg class="ic s20"><use href="#i-bell"/></svg></div>
+            <div class="iconbtn" style="width:40px"><svg class="ic s20"><use href="#i-person"/></svg></div>
+          </div>
+          <div class="h1" style="margin-top:2px">早上好，跑者</div>
+          <div class="t14 muted" style="margin-top:4px">今天是恢复日，放松一下</div>
+
+          <div class="card" style="margin-top:16px;height:120px">
+            <div class="row">
+              <span class="chip rest"><span class="cdot"></span>休息</span>
+              <div class="spacer"></div>
+              <span class="t12 ter">第 3 周 · 周五</span>
+            </div>
+            <div class="h2" style="margin-top:10px">今天休息</div>
+            <div class="row" style="margin-top:10px">
+              <span class="t14 muted">建议放松拉伸 15 分钟，为明天蓄力</span>
+              <div class="spacer"></div>
+              <span class="t13 w6" style="color:var(--brand)">查看计划 ›</span>
+            </div>
+          </div>
+
+          <button class="btn secondary" style="margin-top:16px;height:56px">自由跑</button>
+
+          <div class="row" style="margin-top:24px"><div class="h3">本周进度</div><div class="spacer"></div><span class="t13 w6" style="color:var(--brand)">查看计划 ›</span></div>
+          <div class="card" style="margin-top:10px;height:96px;display:flex;align-items:center;gap:14px">
+            <div class="ring-wrap"><div class="ring" style="background:conic-gradient(var(--brand) 180deg, var(--ring-track) 0)"></div><span>2/4</span></div>
+            <div style="flex:1">
+              <div class="t16 w6">已完成 2 次 · 16.4 公里</div>
+              <div class="progressbar" style="margin-top:10px"><i style="width:50%"></i></div>
+              <div class="t12 ter" style="margin-top:6px">明天长距离 18.0 公里 · 建议 07:00 出发</div>
+            </div>
+          </div>
+
+          <div class="card sunken" style="margin-top:24px;padding:16px">
+            <div class="row gap8"><svg class="ic s20" style="color:var(--brand)"><use href="#i-puffin"/></svg><span class="t13 w6" style="color:var(--brand)">步凡提示</span></div>
+            <div class="t14 muted" style="margin-top:8px;line-height:22px">休息也是训练的一部分。今晚保证 7 小时以上睡眠，明天长距离前 2 小时吃点易消化的碳水。</div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav">
+          <div class="tab active"><svg class="ic"><use href="#i-home"/></svg>首页</div>
+          <div class="tab"><svg class="ic"><use href="#i-calendar"/></svg>训练</div>
+          <div class="tab"><svg class="ic"><use href="#i-route"/></svg>记录</div>
+          <div class="tab"><svg class="ic"><use href="#i-person"/></svg>我的</div>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- empty -->
+    <div class="frame">
+      <div class="frame-label">周视图 · 空计划 <em>empty</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="title">训练计划</div></div>
+        <div class="spacer"></div>
+        <div class="col" style="align-items:center;padding:0 32px">
+          <svg class="ic s48" style="color:var(--text3)"><use href="#i-calendar"/></svg>
+          <div class="h3" style="margin-top:16px">本周还没有训练计划</div>
+          <div class="t14 muted" style="margin-top:8px;text-align:center;max-width:280px">完善建档信息后，步凡会根据你的跑量、目标和可训练时间生成专属计划。</div>
+          <button class="btn" style="margin-top:24px;width:240px">生成计划</button>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav">
+          <div class="tab"><svg class="ic"><use href="#i-home"/></svg>首页</div>
+          <div class="tab active"><svg class="ic"><use href="#i-calendar"/></svg>训练</div>
+          <div class="tab"><svg class="ic"><use href="#i-route"/></svg>记录</div>
+          <div class="tab"><svg class="ic"><use href="#i-person"/></svg>我的</div>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- error -->
+    <div class="frame">
+      <div class="frame-label">周视图 · 生成失败 <em>error</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="title">训练计划</div><div class="spacer"></div><div class="iconbtn"><svg class="ic"><use href="#i-refresh"/></svg></div></div>
+        <div class="spacer"></div>
+        <div class="col" style="align-items:center;padding:0 32px">
+          <svg class="ic s48" style="color:var(--danger)"><use href="#i-alert"/></svg>
+          <div class="h3" style="margin-top:16px">计划生成失败</div>
+          <div class="t14 muted" style="margin-top:8px;text-align:center;max-width:280px">没有获取到足够的历史跑步数据，请检查网络或先同步 Coros。</div>
+          <button class="btn" style="margin-top:24px;width:240px">重新生成</button>
+          <button class="btn ghost" style="margin-top:4px">查看已同步数据</button>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav">
+          <div class="tab"><svg class="ic"><use href="#i-home"/></svg>首页</div>
+          <div class="tab active"><svg class="ic"><use href="#i-calendar"/></svg>训练</div>
+          <div class="tab"><svg class="ic"><use href="#i-route"/></svg>记录</div>
+          <div class="tab"><svg class="ic"><use href="#i-person"/></svg>我的</div>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- loading -->
+    <div class="frame">
+      <div class="frame-label">周视图 · 加载骨架 <em>loading</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="title">训练计划</div></div>
+        <div class="page">
+          <div class="row" style="height:44px;align-items:center">
+            <div class="sk" style="width:24px;height:24px;border-radius:50%"></div>
+            <div class="sk" style="width:160px;height:16px;margin:0 auto;border-radius:6px"></div>
+            <div class="sk" style="width:24px;height:24px;border-radius:50%"></div>
+          </div>
+          <div class="sk" style="width:150px;height:12px;margin-top:8px;border-radius:4px"></div>
+          <div class="card" style="margin-top:12px;padding:0;overflow:hidden">
+            <div style="height:64px;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid var(--border-subtle)">
+              <div class="sk" style="width:44px;height:28px;border-radius:6px"></div><div class="sk" style="flex:1;height:16px;border-radius:5px"></div><div class="sk" style="width:20px;height:20px;border-radius:50%"></div>
+            </div>
+            <div style="height:64px;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid var(--border-subtle)">
+              <div class="sk" style="width:44px;height:28px;border-radius:6px"></div><div class="sk" style="flex:1;height:16px;border-radius:5px"></div><div class="sk" style="width:20px;height:20px;border-radius:50%"></div>
+            </div>
+            <div style="height:64px;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid var(--border-subtle)">
+              <div class="sk" style="width:44px;height:28px;border-radius:6px"></div><div class="sk" style="flex:1;height:16px;border-radius:5px"></div><div class="sk" style="width:20px;height:20px;border-radius:50%"></div>
+            </div>
+            <div style="height:64px;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid var(--border-subtle)">
+              <div class="sk" style="width:44px;height:28px;border-radius:6px"></div><div class="sk" style="flex:1;height:16px;border-radius:5px"></div><div class="sk" style="width:20px;height:20px;border-radius:50%"></div>
+            </div>
+            <div style="height:64px;display:flex;align-items:center;gap:12px;padding:0 16px">
+              <div class="sk" style="width:44px;height:28px;border-radius:6px"></div><div class="sk" style="flex:1;height:16px;border-radius:5px"></div><div class="sk" style="width:20px;height:20px;border-radius:50%"></div>
+            </div>
+          </div>
+          <div class="sk" style="height:76px;border-radius:12px;margin-top:16px"></div>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav">
+          <div class="tab"><svg class="ic"><use href="#i-home"/></svg>首页</div>
+          <div class="tab active"><svg class="ic"><use href="#i-calendar"/></svg>训练</div>
+          <div class="tab"><svg class="ic"><use href="#i-route"/></svg>记录</div>
+          <div class="tab"><svg class="ic"><use href="#i-person"/></svg>我的</div>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<div style="max-width:1180px;margin:0 auto 60px;padding:0 28px;font-size:12px;line-height:20px;opacity:.55">
+  说明：完成判定为目标距离/时长 ≥ 80%；80%–99% 为「部分完成」；休息日也可进入详情；本迭代不提供计划编辑。
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

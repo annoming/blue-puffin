@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>我的 / Coros · 步凡设计原型</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header id="topbar"></header>
+
+<div class="intro">
+  <h1>04 · 我的 Profile 与 Coros 同步</h1>
+  <p>个人中心、跑步历史、用户信息，以及 Coros 绑定全流程：未绑定 → 授权中 → 授权失败 → 已连接 / 同步失败。同步为整段历史导入，不提供单条删除。</p>
+</div>
+
+<section class="block">
+  <div class="grid">
+
+    <!-- profile -->
+    <div class="frame">
+      <div class="frame-label">我的 · 主页 <em>/profile</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="title">我的</div><div class="spacer"></div>
+          <div class="iconbtn"><svg class="ic"><use href="#i-settings"/></svg></div>
+        </div>
+        <div class="page">
+          <div class="row gap12" style="margin-top:4px">
+            <div class="avatar">明</div>
+            <div style="flex:1">
+              <div class="h2">明睿</div>
+              <div class="t13 muted" style="margin-top:2px">全马目标 3:30 · 已训练 3 周</div>
+            </div>
+            <svg class="ic s20" style="color:var(--text3)"><use href="#i-chev"/></svg>
+          </div>
+
+          <div class="card" style="margin-top:16px;padding:14px 0">
+            <div class="row">
+              <div class="stat-s" style="flex:1"><div class="v num">18</div><div class="k">本月次数</div></div>
+              <div class="stat-s" style="flex:1"><div class="v num">126<span style="font-size:11px;color:var(--text3)"> km</span></div><div class="k">本月里程</div></div>
+              <div class="stat-s" style="flex:1"><div class="v num">5'58"</div><div class="k">平均配速</div></div>
+            </div>
+          </div>
+
+          <div class="h3" style="margin-top:24px">设备与数据</div>
+          <div class="card" style="margin-top:10px;padding:0">
+            <div class="row" style="height:60px;padding:0 16px;border-bottom:1px solid var(--border-subtle)">
+              <div class="iconbox" style="background:var(--brand-soft);color:var(--brand)"><svg class="ic s20"><use href="#i-watch"/></svg></div>
+              <div style="flex:1;margin-left:12px">
+                <div class="t16 w5">Coros 手表</div>
+                <div class="t12 ter" style="margin-top:1px">已连接 · 5 分钟前同步</div>
+              </div>
+              <span class="pill success">已连接</span>
+              <svg class="ic s20" style="color:var(--text3);margin-left:6px"><use href="#i-chev"/></svg>
+            </div>
+            <div class="row" style="height:60px;padding:0 16px">
+              <div class="iconbox" style="background:var(--sunken);color:var(--text2)"><svg class="ic s20"><use href="#i-route"/></svg></div>
+              <div style="flex:1;margin-left:12px">
+                <div class="t16 w5">跑步记录</div>
+                <div class="t12 ter" style="margin-top:1px">共 42 条记录</div>
+              </div>
+              <svg class="ic s20" style="color:var(--text3)"><use href="#i-chev"/></svg>
+            </div>
+          </div>
+
+          <div class="h3" style="margin-top:24px">我的设置</div>
+          <div class="card" style="margin-top:10px;padding:0">
+            <div class="row" style="height:56px;padding:0 16px;border-bottom:1px solid var(--border-subtle)">
+              <span class="t16">个人资料</span><div class="spacer"></div><span class="t13 ter">明睿</span>
+              <svg class="ic s20" style="color:var(--text3);margin-left:6px"><use href="#i-chev"/></svg>
+            </div>
+            <div class="row" style="height:56px;padding:0 16px;border-bottom:1px solid var(--border-subtle)">
+              <span class="t16">训练目标</span><div class="spacer"></div><span class="t13 ter">全马 3:30</span>
+              <svg class="ic s20" style="color:var(--text3);margin-left:6px"><use href="#i-chev"/></svg>
+            </div>
+            <div class="row" style="height:56px;padding:0 16px">
+              <span class="t16">通知</span><div class="spacer"></div><span class="t13 ter">训练提醒已开</span>
+              <svg class="ic s20" style="color:var(--text3);margin-left:6px"><use href="#i-chev"/></svg>
+            </div>
+          </div>
+
+          <div class="row" style="height:52px;margin-top:16px;color:var(--danger)">
+            <svg class="ic s20"><use href="#i-logout"/></svg><span class="t16" style="margin-left:10px">退出登录</span>
+          </div>
+          <div class="t12 ter" style="text-align:center;margin-top:14px">步凡 v1.0.0 · 迭代 1</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav">
+          <div class="tab"><svg class="ic"><use href="#i-home"/></svg>首页</div>
+          <div class="tab"><svg class="ic"><use href="#i-calendar"/></svg>训练</div>
+          <div class="tab"><svg class="ic"><use href="#i-route"/></svg>记录</div>
+          <div class="tab active"><svg class="ic"><use href="#i-person"/></svg>我的</div>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- history list -->
+    <div class="frame">
+      <div class="frame-label">跑步历史 · 列表 <em>/run/history</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div><div class="spacer"></div>
+          <div class="title">跑步记录</div><div class="spacer"></div>
+          <div class="iconbtn"><svg class="ic"><use href="#i-search"/></svg></div>
+        </div>
+        <div class="page">
+          <div class="row gap8" style="margin-top:2px">
+            <span class="pill brand">全部 42</span>
+            <span class="pill neutral">本月 18</span>
+            <span class="spacer"></span>
+            <span class="t12 ter">按时间 ↓</span>
+          </div>
+
+          <div class="t12 ter" style="margin-top:18px;padding-left:2px">2026 年 10 月</div>
+
+          <div class="card" style="margin-top:8px;padding:0">
+            <div class="row" style="height:76px;padding:0 14px;border-bottom:1px solid var(--border-subtle)">
+              <div class="hist-date"><span class="t11 ter">10月</span><span class="t16 w6">28</span></div>
+              <div style="flex:1;margin-left:12px">
+                <div class="row"><span class="t16 w6">晨跑</span><span class="pill neutral" style="margin-left:6px">轻松跑</span></div>
+                <div class="t13 muted num" style="margin-top:3px">10.42 km · 1:02:33 · 5'59"</div>
+              </div>
+              <svg class="ic s20" style="color:var(--text3)"><use href="#i-chev"/></svg>
+            </div>
+            <div class="row" style="height:76px;padding:0 14px;border-bottom:1px solid var(--border-subtle)">
+              <div class="hist-date"><span class="t11 ter">10月</span><span class="t16 w6">27</span></div>
+              <div style="flex:1;margin-left:12px">
+                <div class="row"><span class="t16 w6">夜跑</span><span class="pill neutral" style="margin-left:6px">轻松跑</span></div>
+                <div class="t13 muted num" style="margin-top:3px">6.42 km · 38:11 · 5'57"</div>
+              </div>
+              <svg class="ic s20" style="color:var(--text3)"><use href="#i-chev"/></svg>
+            </div>
+            <div class="row" style="height:76px;padding:0 14px;border-bottom:1px solid var(--border-subtle)">
+              <div class="hist-date"><span class="t11 ter">10月</span><span class="t16 w6">26</span></div>
+              <div style="flex:1;margin-left:12px">
+                <div class="row"><span class="t16 w6">有氧跑</span><span class="pill neutral" style="margin-left:6px">轻松跑</span></div>
+                <div class="t13 muted num" style="margin-top:3px">8.10 km · 49:30 · 6'06"</div>
+              </div>
+              <svg class="ic s20" style="color:var(--text3)"><use href="#i-chev"/></svg>
+            </div>
+            <div class="row" style="height:76px;padding:0 14px">
+              <div class="hist-date"><span class="t11 ter">10月</span><span class="t16 w6">24</span></div>
+              <div style="flex:1;margin-left:12px">
+                <div class="row"><span class="t16 w6">节奏跑</span><span class="pill warning" style="margin-left:6px">部分完成</span></div>
+                <div class="t13 muted num" style="margin-top:3px">6.02 km · 34:20 · 5'42"</div>
+              </div>
+              <svg class="ic s20" style="color:var(--text3)"><use href="#i-chev"/></svg>
+            </div>
+          </div>
+
+          <div class="t12 ter" style="margin-top:18px;padding-left:2px">2026 年 9 月</div>
+          <div class="card" style="margin-top:8px;padding:0">
+            <div class="row" style="height:76px;padding:0 14px;border-bottom:1px solid var(--border-subtle)">
+              <div class="hist-date"><span class="t11 ter">09月</span><span class="t16 w6">30</span></div>
+              <div style="flex:1;margin-left:12px">
+                <div class="row"><span class="t16 w6">长距离</span><span class="pill neutral" style="margin-left:6px">长距离</span></div>
+                <div class="t13 muted num" style="margin-top:3px">18.00 km · 1:52:10 · 6'14"</div>
+              </div>
+              <svg class="ic s20" style="color:var(--text3)"><use href="#i-chev"/></svg>
+            </div>
+            <div class="row" style="height:76px;padding:0 14px">
+              <div class="hist-date"><span class="t11 ter">09月</span><span class="t16 w6">28</span></div>
+              <div style="flex:1;margin-left:12px">
+                <div class="row"><span class="t16 w6">间歇跑</span><span class="pill neutral" style="margin-left:6px">间歇跑</span></div>
+                <div class="t13 muted num" style="margin-top:3px">8.20 km · 44:05 · 5'22"</div>
+              </div>
+              <svg class="ic s20" style="color:var(--text3)"><use href="#i-chev"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav">
+          <div class="tab"><svg class="ic"><use href="#i-home"/></svg>首页</div>
+          <div class="tab"><svg class="ic"><use href="#i-calendar"/></svg>训练</div>
+          <div class="tab active"><svg class="ic"><use href="#i-route"/></svg>记录</div>
+          <div class="tab"><svg class="ic"><use href="#i-person"/></svg>我的</div>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- history empty -->
+    <div class="frame">
+      <div class="frame-label">跑步历史 · 空态 <em>empty</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div><div class="spacer"></div><div class="title">跑步记录</div><div class="spacer"></div><span style="width:36px"></span></div>
+        <div class="spacer"></div>
+        <div class="col" style="align-items:center;padding:0 36px">
+          <svg class="ic s48" style="color:var(--text3)"><use href="#i-route"/></svg>
+          <div class="h3" style="margin-top:16px">还没有跑步记录</div>
+          <div class="t14 muted" style="margin-top:8px;text-align:center;max-width:280px">开始第一次跑步，或连接 Coros 导入历史训练数据。</div>
+          <button class="btn accent" style="margin-top:24px;width:240px">开始跑步</button>
+          <button class="btn ghost" style="margin-top:2px">连接 Coros 导入</button>
+        </div>
+        <div class="spacer"></div>
+        <div class="nav">
+          <div class="tab"><svg class="ic"><use href="#i-home"/></svg>首页</div>
+          <div class="tab"><svg class="ic"><use href="#i-calendar"/></svg>训练</div>
+          <div class="tab active"><svg class="ic"><use href="#i-route"/></svg>记录</div>
+          <div class="tab"><svg class="ic"><use href="#i-person"/></svg>我的</div>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- user info -->
+    <div class="frame">
+      <div class="frame-label">用户信息 <em>/profile/me</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div><div class="spacer"></div>
+          <div class="title">个人资料</div><div class="spacer"></div><span class="t15 w6" style="color:var(--brand)">保存</span></div>
+        <div class="page">
+          <div class="col" style="align-items:center;margin-top:4px">
+            <div class="avatar" style="width:80px;height:80px;font-size:30px">明</div>
+            <div class="t13 w6" style="color:var(--brand);margin-top:8px">更换头像</div>
+          </div>
+
+          <div class="field"><label>昵称</label><div class="input">明睿</div></div>
+          <div class="field"><label>性别</label><div class="input">男</div></div>
+          <div class="field"><label>出生年份</label><div class="input">1995</div></div>
+          <div class="field"><label>身高</label><div class="input">178 <span class="unit">cm</span></div></div>
+          <div class="field"><label>体重</label><div class="input">70 <span class="unit">kg</span></div></div>
+
+          <div class="h3" style="margin-top:24px">训练目标</div>
+          <div class="field"><label>目标赛事</label><div class="input">2026 北京马拉松</div></div>
+          <div class="field"><label>目标完赛</label><div class="input">3 小时 30 分</div></div>
+          <div class="field"><label>周跑量</label><div class="input">30 <span class="unit">km</span></div></div>
+          <div class="field"><label>每周可训练</label><div class="input">4 天 · 周一至周五早</div></div>
+          <div class="field"><label>伤病史</label><div class="input" style="min-height:72px;padding-top:10px">无</div></div>
+        </div>
+        <div class="spacer"></div>
+        <div class="bottom-fixed"><button class="btn">保存</button></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- coros unbound -->
+    <div class="frame">
+      <div class="frame-label">Coros · 未绑定 <em>/sync/coros</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div><div class="spacer"></div>
+          <div class="title">Coros 同步</div><div class="spacer"></div><span style="width:36px"></span></div>
+        <div class="spacer"></div>
+        <div class="col" style="align-items:center;padding:0 32px">
+          <div style="width:72px;height:72px;border-radius:20px;background:var(--brand-soft);display:grid;place-items:center;color:var(--brand)">
+            <svg class="ic s36"><use href="#i-watch"/></svg>
+          </div>
+          <div class="h2" style="margin-top:16px">连接 Coros 手表</div>
+          <div class="t14 muted" style="margin-top:8px;text-align:center;max-width:290px;line-height:22px">导入历史跑步数据，步凡会据此生成更贴合你的训练计划。</div>
+          <div class="card sunken" style="margin-top:24px;width:100%;padding:14px 16px">
+            <div class="t13 w6">将同步的内容</div>
+            <div class="t13 muted" style="margin-top:6px">· 近 12 个月的跑步记录</div>
+            <div class="t13 muted" style="margin-top:4px">· 距离、时长、配速、心率与轨迹</div>
+            <div class="t13 muted" style="margin-top:4px">· 同步可随时在 Coros 官网撤销授权</div>
+          </div>
+          <button class="btn accent" style="margin-top:24px;width:100%">去授权</button>
+          <div class="t12 ter" style="margin-top:10px;text-align:center">将跳转至 Coros 官方授权页</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- coros authorizing -->
+    <div class="frame">
+      <div class="frame-label">Coros · 授权中 <em>authorizing</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div><div class="spacer"></div>
+          <div class="title">Coros 同步</div><div class="spacer"></div><span style="width:36px"></span></div>
+        <div class="spacer"></div>
+        <div class="col" style="align-items:center;padding:0 32px">
+          <div class="spinner"></div>
+          <div class="h3" style="margin-top:20px">正在授权并同步</div>
+          <div class="t14 muted" style="margin-top:8px;text-align:center;max-width:290px">正在获取近 12 个月的跑步记录，请不要关闭页面。</div>
+          <div class="card" style="margin-top:24px;width:100%;padding:16px">
+            <div class="row"><span class="t13 muted">授权状态</span><div class="spacer"></div><span class="t13 w6" style="color:var(--success)">已授权</span></div>
+            <div class="row" style="margin-top:12px"><span class="t13 muted">获取记录</span><div class="spacer"></div><span class="t13 w6 num">128 / 236</span></div>
+            <div class="progressbar" style="margin-top:8px"><i style="width:54%"></i></div>
+            <div class="row" style="margin-top:12px"><span class="t13 muted">数据写入</span><div class="spacer"></div><span class="t13 ter">等待中</span></div>
+          </div>
+          <button class="btn ghost" style="margin-top:20px;width:100%">取消同步</button>
+        </div>
+        <div class="spacer"></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- coros failed -->
+    <div class="frame">
+      <div class="frame-label">Coros · 授权失败 <em>failed</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div><div class="spacer"></div>
+          <div class="title">Coros 同步</div><div class="spacer"></div><span style="width:36px"></span></div>
+        <div class="spacer"></div>
+        <div class="col" style="align-items:center;padding:0 32px">
+          <div style="width:72px;height:72px;border-radius:20px;background:var(--danger-bg);display:grid;place-items:center;color:var(--danger)">
+            <svg class="ic s32"><use href="#i-alert"/></svg>
+          </div>
+          <div class="h3" style="margin-top:16px">授权未完成</div>
+          <div class="t14 muted" style="margin-top:8px;text-align:center;max-width:290px">你在 Coros 页面取消了授权，或授权已超时。</div>
+          <div class="card sunken" style="margin-top:20px;width:100%;padding:14px 16px">
+            <div class="t13 w6">常见原因</div>
+            <div class="t13 muted" style="margin-top:6px">· 未在 10 分钟内完成登录</div>
+            <div class="t13 muted" style="margin-top:4px">· Coros 账号密码错误</div>
+            <div class="t13 muted" style="margin-top:4px">· 网络中断或页面被关闭</div>
+          </div>
+          <button class="btn accent" style="margin-top:24px;width:100%">重新授权</button>
+          <button class="btn ghost" style="margin-top:2px">稍后再试</button>
+        </div>
+        <div class="spacer"></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- coros connected syncing -->
+    <div class="frame">
+      <div class="frame-label">Coros · 已连接 <em>connected</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div><div class="spacer"></div>
+          <div class="title">Coros 同步</div><div class="spacer"></div><span style="width:36px"></span></div>
+        <div class="page">
+          <div class="card" style="margin-top:4px;padding:16px;display:flex;align-items:center;gap:12px">
+            <div class="iconbox" style="width:44px;height:44px;background:var(--success-bg);color:var(--success)"><svg class="ic s20"><use href="#i-watch"/></svg></div>
+            <div style="flex:1">
+              <div class="t16 w6">COROS PACE 3</div>
+              <div class="t13 muted" style="margin-top:2px">已连接 · 账号 runner@coros.com</div>
+            </div>
+            <span class="pill success">已连接</span>
+          </div>
+          <div class="t13 muted num" style="margin-top:10px">上次同步：今天 08:20 · 共同步 236 条记录</div>
+
+          <div class="h3" style="margin-top:24px">同步设置</div>
+          <div class="card" style="margin-top:10px;padding:0">
+            <div class="row" style="height:56px;padding:0 16px;border-bottom:1px solid var(--border-subtle)">
+              <span class="t16">自动同步</span><div class="spacer"></div>
+              <span class="switch on"></span>
+            </div>
+            <div class="row" style="height:56px;padding:0 16px;border-bottom:1px solid var(--border-subtle)">
+              <span class="t16">同步范围</span><div class="spacer"></div><span class="t13 ter">近 12 个月</span>
+              <svg class="ic s20" style="color:var(--text3);margin-left:6px"><use href="#i-chev"/></svg>
+            </div>
+            <div class="row" style="height:56px;padding:0 16px">
+              <span class="t16">仅同步跑步</span><div class="spacer"></div>
+              <span class="switch on"></span>
+            </div>
+          </div>
+
+          <div class="h3" style="margin-top:24px">数据导入</div>
+          <div class="card" style="margin-top:10px;padding:16px">
+            <div class="row"><span class="t14 muted">本次同步</span><div class="spacer"></div><span class="t13 w6" style="color:var(--brand)">同步中 128/236</span></div>
+            <div class="progressbar" style="margin-top:10px"><i style="width:54%"></i></div>
+            <div class="t12 ter" style="margin-top:8px">已完成 128 条，剩余约 1 分钟</div>
+          </div>
+
+          <button class="btn secondary" style="margin-top:20px">立即同步</button>
+          <button class="btn ghost danger" style="margin-top:4px">解除绑定</button>
+        </div>
+        <div class="spacer"></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- coros sync failed -->
+    <div class="frame">
+      <div class="frame-label">Coros · 同步失败 <em>sync failed</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar"><div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div><div class="spacer"></div>
+          <div class="title">Coros 同步</div><div class="spacer"></div><span style="width:36px"></span></div>
+        <div class="page">
+          <div class="banner danger" style="min-height:56px">
+            <svg class="ic s20"><use href="#i-cloud-off"/></svg>
+            <div>同步中断，已导入 128 条，剩余下次继续</div>
+          </div>
+          <div class="card" style="margin-top:16px;padding:16px;display:flex;align-items:center;gap:12px">
+            <div class="iconbox" style="width:44px;height:44px;background:var(--success-bg);color:var(--success)"><svg class="ic s20"><use href="#i-watch"/></svg></div>
+            <div style="flex:1">
+              <div class="t16 w6">COROS PACE 3</div>
+              <div class="t13 muted" style="margin-top:2px">已连接 · 上次成功 10/27 08:20</div>
+            </div>
+            <span class="pill success">已连接</span>
+          </div>
+
+          <div class="card" style="margin-top:16px;padding:16px">
+            <div class="row"><span class="t14 muted">本次同步</span><div class="spacer"></div><span class="t13 w6" style="color:var(--danger)">失败</span></div>
+            <div class="progressbar" style="margin-top:10px"><i style="width:54%;background:var(--danger)"></i></div>
+            <div class="t13" style="margin-top:10px;color:var(--danger)">网络连接超时，请检查网络后重试。</div>
+            <div class="t12 ter" style="margin-top:4px">失败时间 10/28 08:26</div>
+          </div>
+
+          <button class="btn" style="margin-top:20px">重新同步</button>
+          <div class="t12 ter" style="margin-top:10px;text-align:center">已导入的记录不会重复，继续同步会从断点开始</div>
+
+          <div class="h3" style="margin-top:24px">同步记录</div>
+          <div class="row" style="height:52px;border-bottom:1px solid var(--border-subtle)">
+            <span class="t14">10/28 08:20</span><div class="spacer"></div><span class="t13 ter">中断 · 128 条</span>
+          </div>
+          <div class="row" style="height:52px;border-bottom:1px solid var(--border-subtle)">
+            <span class="t14">10/27 08:20</span><div class="spacer"></div><span class="t13" style="color:var(--success)">成功 · 12 条</span>
+          </div>
+          <div class="row" style="height:52px">
+            <span class="t14">10/26 08:20</span><div class="spacer"></div><span class="t13" style="color:var(--success)">成功 · 3 条</span>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<div style="max-width:1180px;margin:0 auto 60px;padding:0 28px;font-size:12px;line-height:20px;opacity:.55">
+  说明：授权在系统浏览器完成，回跳失败时保留「重新授权」入口；同步按断点续传，已导入记录不重复。
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

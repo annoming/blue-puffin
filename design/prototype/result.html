@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>跑步结果 · 步凡设计原型</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header id="topbar"></header>
+
+<div class="intro">
+  <h1>02 · 跑步结果页 Run Result</h1>
+  <p>轨迹按配速着色、配速曲线、每公里分段、训练关联与分享卡。分享卡固定深色品牌版，按 1080×1440 导出。底部主按钮固定，内容区可滚动。</p>
+</div>
+
+<section class="block">
+  <div class="grid">
+
+    <!-- full -->
+    <div class="frame">
+      <div class="frame-label">完整结果 <em>/run/result/:id</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar">
+          <div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div>
+          <div class="spacer"></div>
+          <div class="iconbtn"><svg class="ic"><use href="#i-share"/></svg></div>
+        </div>
+        <div class="page">
+          <div class="h1">晨跑</div>
+          <div class="t14 muted" style="margin-top:4px">10月28日 07:12 · 轻松跑 · 已关联训练</div>
+          <div class="map" style="height:200px;border-radius:16px;margin-top:16px">
+            <svg viewBox="0 0 358 200" preserveAspectRatio="xMidYMid slice">
+              <rect width="358" height="200" fill="#EDF1F6"/>
+              <path d="M-10 50 L370 30" stroke="#DCE4EE" stroke-width="12"/>
+              <path d="M-10 150 L370 172" stroke="#DCE4EE" stroke-width="9"/>
+              <path d="M64 -10 L92 210" stroke="#E2E9F1" stroke-width="8"/>
+              <path d="M280 -10 L252 210" stroke="#E2E9F1" stroke-width="8"/>
+              <path d="M34 164 C 70 120, 106 148, 132 112 S 196 60, 232 84 S 292 54, 330 40" fill="none" stroke="#8ABAFF" stroke-width="5" stroke-linecap="round"/>
+              <path d="M34 164 C 70 120, 106 148, 132 112 S 196 60, 232 84" fill="none" stroke="#1463E6" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="34" cy="164" r="6" fill="#fff" stroke="#12A05C" stroke-width="3"/>
+              <circle cx="330" cy="40" r="6" fill="#fff" stroke="#E85D0B" stroke-width="3"/>
+            </svg>
+            <div class="mapbtn" style="width:34px;height:34px;right:10px;top:10px;bottom:auto"><svg class="ic s16"><use href="#i-fullscreen"/></svg></div>
+          </div>
+        </div>
+        <div class="row" style="padding:0 16px;margin-top:20px">
+          <div class="stat" style="flex:1"><div class="v num">10.42<span class="u">公里</span></div><div class="k">里程</div></div>
+          <div class="stat" style="flex:1"><div class="v num">1:02:33</div><div class="k">时长</div></div>
+          <div class="stat" style="flex:1"><div class="v num">5'59"</div><div class="k">平均配速</div></div>
+        </div>
+        <div class="page" style="margin-top:20px">
+          <div class="card" style="padding:12px 0">
+            <div class="row">
+              <div class="stat-s" style="flex:1"><div class="v num">--</div><div class="k">平均心率</div></div>
+              <div class="stat-s" style="flex:1"><div class="v num">176<span style="font-size:11px;color:var(--text3)"> spm</span></div><div class="k">平均步频</div></div>
+              <div class="stat-s" style="flex:1"><div class="v num">86<span style="font-size:11px;color:var(--text3)"> m</span></div><div class="k">累计爬升</div></div>
+            </div>
+          </div>
+          <div class="row" style="margin-top:20px;margin-bottom:8px">
+            <div class="h3">配速</div><div class="spacer"></div>
+            <div class="t12 ter">平均 5'59" /km</div>
+          </div>
+          <div class="card" style="padding:12px 12px 8px">
+            <svg class="chart" viewBox="0 0 310 100" preserveAspectRatio="none">
+              <defs><linearGradient id="paceFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1463E6" stop-opacity=".18"/><stop offset="1" stop-color="#1463E6" stop-opacity="0"/>
+              </linearGradient></defs>
+              <path d="M0 44 C 18 30, 28 56, 44 50 S 70 24, 90 34 S 120 58, 140 48 S 170 20, 192 30 S 224 62, 246 50 S 278 26, 310 34 L310 100 L0 100 Z" fill="url(#paceFill)"/>
+              <path d="M0 44 C 18 30, 28 56, 44 50 S 70 24, 90 34 S 120 58, 140 48 S 170 20, 192 30 S 224 62, 246 50 S 278 26, 310 34" fill="none" stroke="#1463E6" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="0" cy="44" r="2.5" fill="#fff" stroke="#1463E6" stroke-width="1.5"/>
+              <circle cx="90" cy="34" r="2.5" fill="#fff" stroke="#1463E6" stroke-width="1.5"/>
+              <circle cx="192" cy="30" r="2.5" fill="#fff" stroke="#1463E6" stroke-width="1.5"/>
+              <circle cx="310" cy="34" r="2.5" fill="#fff" stroke="#1463E6" stroke-width="1.5"/>
+            </svg>
+            <div class="row" style="justify-content:space-between;margin-top:2px">
+              <span class="t11 ter">0 km</span><span class="t11 ter">5 km</span><span class="t11 ter">10.42 km</span>
+            </div>
+          </div>
+          <div class="row" style="margin-top:16px;margin-bottom:4px">
+            <div class="h3">分段</div><div class="spacer"></div><div class="t13 w6" style="color:var(--brand)">查看全部 ›</div>
+          </div>
+          <div class="split"><span class="km">1 km</span><span class="track"><i style="width:92%"></i></span><span class="pace num">5'42"</span></div>
+          <div class="split"><span class="km">2 km</span><span class="track"><i style="width:74%"></i></span><span class="pace num">5'58"</span></div>
+          <div class="split"><span class="km">3 km</span><span class="track"><i style="width:64%"></i></span><span class="pace num">6'06"</span></div>
+        </div>
+        <div class="spacer"></div>
+        <div class="bottom-fixed">
+          <button class="btn">分享跑步记录</button>
+        </div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+    <!-- share sheet -->
+    <div class="frame">
+      <div class="frame-label">分享卡片 <em>share sheet · 1080×1440</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar">
+          <div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div>
+          <div class="spacer"></div>
+          <div class="iconbtn"><svg class="ic"><use href="#i-share"/></svg></div>
+        </div>
+        <div class="page" style="opacity:.25">
+          <div class="h1">晨跑</div>
+          <div class="t14 muted" style="margin-top:4px">10月28日 07:12 · 轻松跑 · 已关联训练</div>
+          <div class="map" style="height:200px;border-radius:16px;margin-top:16px"></div>
+        </div>
+        <div class="bottomsheet-open">
+          <div class="sheet">
+            <div class="grab"></div>
+            <div class="row"><div class="h3">分享跑步记录</div><div class="spacer"></div>
+              <div class="iconbtn"><svg class="ic s20"><use href="#i-close"/></svg></div>
+            </div>
+            <div style="display:flex;justify-content:center;margin-top:8px">
+              <div class="share-card" style="width:252px;height:448px;padding:18px;border-radius:20px">
+                <div class="row" style="justify-content:space-between">
+                  <div class="row gap6"><svg class="ic s16" style="color:#FF8A3D"><use href="#i-puffin"/></svg><span style="font-size:11px;letter-spacing:.4px;color:rgba(255,255,255,.6)">步凡 · BLUE PUFFIN</span></div>
+                  <span style="font-size:11px;color:rgba(255,255,255,.6)">10/28</span>
+                </div>
+                <div style="font-size:26px;font-weight:700;margin-top:14px">晨跑</div>
+                <div class="num" style="font-size:44px;font-weight:700;letter-spacing:-1px;line-height:48px;margin-top:2px">10.42 <span style="font-size:16px;font-weight:500;color:#9EB0C4">公里</span></div>
+                <div class="sc-map" style="height:150px;margin:12px 0">
+                  <svg viewBox="0 0 216 150" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+                    <rect width="216" height="150" fill="#0C1D2B"/>
+                    <path d="M-10 40 L226 28" stroke="#152C3E" stroke-width="9"/>
+                    <path d="M-10 116 L226 130" stroke="#152C3E" stroke-width="7"/>
+                    <path d="M50 -10 L70 160" stroke="#122636" stroke-width="6"/>
+                    <path d="M168 -10 L150 160" stroke="#122636" stroke-width="6"/>
+                    <path d="M26 124 C 52 92, 78 110, 96 84 S 138 44, 160 58 S 190 38, 206 30" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="26" cy="124" r="4.5" fill="#071019" stroke="#4ADE9B" stroke-width="2.5"/>
+                    <circle cx="206" cy="30" r="4.5" fill="#071019" stroke="#FF6B1A" stroke-width="2.5"/>
+                  </svg>
+                </div>
+                <div class="row" style="gap:28px">
+                  <div><div class="num" style="font-size:20px;font-weight:600">1:02:33</div><div style="font-size:11px;color:#9EB0C4">时长</div></div>
+                  <div><div class="num" style="font-size:20px;font-weight:600">5'59"</div><div style="font-size:11px;color:#9EB0C4">平均配速</div></div>
+                </div>
+                <div style="height:1px;background:rgba(255,255,255,.12);margin:14px 0 10px"></div>
+                <div class="row" style="justify-content:space-between">
+                  <span style="font-size:10.5px;color:rgba(255,255,255,.6)">10月28日 07:12 · 轻松跑</span>
+                  <span style="font-size:10.5px;color:rgba(255,255,255,.42)">由 步凡 生成</span>
+                </div>
+              </div>
+            </div>
+            <div class="template-dots" style="margin-top:14px">
+              <i class="sel"></i><i class="alt1"></i><i class="alt2"></i>
+            </div>
+            <div class="row gap8" style="margin-top:14px">
+              <button class="btn">保存图片</button>
+              <button class="btn secondary" style="flex:none;width:104px">分享到…</button>
+            </div>
+            <div class="home-ind"></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- save failed -->
+    <div class="frame">
+      <div class="frame-label">保存失败 / 待同步 <em>offline pending</em></div>
+      <div class="phone"><div class="screen">
+        <div class="sbar"></div>
+        <div class="appbar">
+          <div class="iconbtn"><svg class="ic s20"><use href="#i-back"/></svg></div>
+          <div class="spacer"></div>
+          <div class="iconbtn"><svg class="ic"><use href="#i-share"/></svg></div>
+        </div>
+        <div class="page">
+          <div class="banner danger" style="min-height:56px">
+            <svg class="ic s20"><use href="#i-cloud-off"/></svg>
+            <div>记录已暂存在本地，联网后自动同步</div>
+            <span class="link">重试</span>
+          </div>
+          <div class="h1" style="margin-top:16px">晨跑 <span class="pill warning" style="vertical-align:middle;margin-left:6px">待同步</span></div>
+          <div class="t14 muted" style="margin-top:4px">10月28日 07:12 · 轻松跑</div>
+          <div class="map" style="height:200px;border-radius:16px;margin-top:16px">
+            <svg viewBox="0 0 358 200">
+              <rect width="358" height="200" fill="#EDF1F6"/>
+              <path d="M-10 50 L370 30" stroke="#DCE4EE" stroke-width="12"/><path d="M-10 150 L370 172" stroke="#DCE4EE" stroke-width="9"/>
+              <path d="M64 -10 L92 210" stroke="#E2E9F1" stroke-width="8"/><path d="M280 -10 L252 210" stroke="#E2E9F1" stroke-width="8"/>
+              <path d="M34 164 C 70 120, 106 148, 132 112 S 196 60, 232 84 S 292 54, 330 40" fill="none" stroke="#1463E6" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="34" cy="164" r="6" fill="#fff" stroke="#12A05C" stroke-width="3"/><circle cx="330" cy="40" r="6" fill="#fff" stroke="#E85D0B" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="row" style="margin-top:18px">
+            <div class="stat" style="flex:1"><div class="v num" style="font-size:36px">10.42<span class="u">公里</span></div><div class="k">里程</div></div>
+            <div class="stat" style="flex:1"><div class="v num" style="font-size:36px">1:02:33</div><div class="k">时长</div></div>
+            <div class="stat" style="flex:1"><div class="v num" style="font-size:36px">5'59"</div><div class="k">平均配速</div></div>
+          </div>
+          <div class="card" style="margin-top:18px">
+            <div class="row"><span class="t14 muted">本次轨迹有 2 处信号缺失</span><div class="spacer"></div><span class="t12 ter">查看图例</span></div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="bottom-fixed"><button class="btn">分享跑步记录</button></div>
+        <div class="home-ind"></div>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<div style="max-width:1180px;margin:0 auto 60px;padding:0 28px;font-size:12px;line-height:20px;opacity:.55">
+  说明：无心率数据显示「--」而不隐藏列；分享卡不含真实姓名，隐私安全；保存失败不阻塞分享，卡片标注「待同步」。
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
