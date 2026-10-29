@@ -78,6 +78,8 @@ class PlanSession {
 
   bool get isRest => type == PlanSessionType.rest;
 
+  bool get isRunning => !isRest;
+
   Map<String, dynamic> toJson() => {
         'date': date.toIso8601String(),
         'type': type.name,

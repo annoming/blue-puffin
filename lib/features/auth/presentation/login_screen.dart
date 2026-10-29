@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (mounted && user != null) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => ProfileFormScreen(userId: user.id),
+            builder: (context) => ProfileFormScreen(),
           ),
         );
       }
@@ -162,7 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (mounted && user != null) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => ProfileFormScreen(userId: user.id),
+            builder: (context) => ProfileFormScreen(),
           ),
         );
       }
