@@ -5,7 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/services/location_service.dart';
 import '../../../../core/permissions/permission_service.dart';
+import '../../../../core/storage/isar_service.dart';
 import '../../../training/domain/providers/training_provider.dart';
+import '../../data/models/run_record_model.dart';
+import '../utils/run_formatters.dart';
 
 class RunScreen extends ConsumerStatefulWidget {
   final Map<String, dynamic>? extra;
@@ -23,6 +26,7 @@ class _RunScreenState extends ConsumerState<RunScreen> {
   bool isRunning = false;
   bool isPaused = false;
   String? runId;
+  DateTime? startTime;
   int durationSeconds = 0;
   double distanceMeters = 0.0;
   List<double> latitudes = [];
@@ -35,27 +39,11 @@ class _RunScreenState extends ConsumerState<RunScreen> {
     super.dispose();
   }
 
-  String _formatDuration(int seconds) {
-    int hours = seconds ~/ 3600;
-    int minutes = (seconds % 3600) ~/ 60;
-    int secs = seconds % 60;
-    if (hours > 0) {
-      return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
-    }
-    return '${minutes.toString().padLeft(2, '0')}:${secs.toString().padLeft(2, '0')}';
-  }
+  String _formatDuration(int seconds) => RunFormatters.formatDuration(seconds);
 
-  String _formatDistance(double meters) {
-    return '${(meters / 1000).toStringAsFixed(2)} 公里';
-  }
+  String _formatDistance(double meters) => '${RunFormatters.formatDistanceKm(meters)} 公里';
 
-  String _formatPace() {
-    if (distanceMeters <= 0 || durationSeconds <= 0) return '--';
-    double paceSeconds = durationSeconds / (distanceMeters / 1000);
-    int minutes = paceSeconds ~/ 60;
-    int seconds = (paceSeconds % 60).toInt();
-    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
-  }
+  String _formatPace() => RunFormatters.formatPace(distanceMeters, durationSeconds);
 
   Future<void> _startRun() async {
     final granted = await _permissionService.requestAllRunPermissions();
@@ -75,10 +63,9 @@ class _RunScreenState extends ConsumerState<RunScreen> {
       distanceMeters = 0.0;
       latitudes = [];
       longitudes = [];
+      startTime = DateTime.now();
+      runId = 'run_${DateTime.now().millisecondsSinceEpoch}';
     });
-
-    final taskId = widget.extra?['taskId'] as String?;
-    runId = 'run_${DateTime.now().millisecondsSinceEpoch}';
 
     _startTimer();
     _startLocationTracking();
@@ -151,9 +138,10 @@ class _RunScreenState extends ConsumerState<RunScreen> {
     });
   }
 
-  void _endRun() {
+  Future<void> _endRun() async {
     final fromTraining = widget.extra?['fromTraining'] == true;
     final taskId = widget.extra?['taskId'] as String?;
+    final taskTitle = widget.extra?['taskTitle'] as String?;
 
     _timer?.cancel();
     _positionSubscription?.cancel();
@@ -163,26 +151,49 @@ class _RunScreenState extends ConsumerState<RunScreen> {
       isPaused = false;
     });
 
-    if (fromTraining && taskId != null && runId != null) {
-      ref.read(trainingTasksProvider.notifier).markCompleted(runId!, taskId);
+    try {
+      final isar = await IsarService.getInstance();
+      final record = RunRecordModel()
+        ..source = 'local'
+        ..externalId = runId ?? 'run_${DateTime.now().millisecondsSinceEpoch}'
+        ..startTime = startTime ?? DateTime.now()
+        ..durationSeconds = durationSeconds
+        ..distanceMeters = distanceMeters
+        ..title = fromTraining ? taskTitle : null
+        ..syncedAt = DateTime.now()
+        ..createdAt = DateTime.now();
+      await isar.writeTxn(() async {
+        await isar.runRecordModels.put(record);
+      });
+      if (fromTraining && taskId != null) {
+        ref.read(trainingTasksProvider.notifier).markCompleted(runId ?? record.externalId, taskId);
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('保存失败')),
+        );
+      }
     }
 
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('跑步完成'),
-        content: Text('里程: ${_formatDistance(distanceMeters)}\n时长: ${_formatDuration(durationSeconds)}\n配速: ${_formatPace()} /km\n轨迹点: ${latitudes.length}'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              context.pop();
-              context.go('/');
-            },
-            child: const Text('确定'),
-          ),
-        ],
-      ),
-    );
+    if (mounted) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('跑步完成'),
+          content: Text('里程: ${_formatDistance(distanceMeters)}\n时长: ${_formatDuration(durationSeconds)}\n配速: ${_formatPace()} /km\n轨迹点: ${latitudes.length}'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                context.pop();
+                context.go('/');
+              },
+              child: const Text('确定'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   @override
