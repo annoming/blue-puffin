@@ -111,7 +111,7 @@ class CorosOAuthService {
       response = await _dio.post<dynamic>(
         config.tokenUrl,
         data: body,
-        options: Options(contentType: Headers.formUrlEncodedFormat),
+        options: Options(contentType: Headers.formUrlEncodedContentType),
       );
     } on DioException catch (error) {
       throw CorosAuthException(

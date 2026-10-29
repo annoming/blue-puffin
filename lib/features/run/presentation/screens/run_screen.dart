@@ -77,9 +77,8 @@ class _RunScreenState extends ConsumerState<RunScreen> {
       longitudes = [];
     });
 
-    final fromTraining = widget.extra?['fromTraining'] == true;
     final taskId = widget.extra?['taskId'] as String?;
-    runId = ref.read(runRecordsProvider.notifier).startRun(trainingTaskId: taskId);
+    runId = 'run_${DateTime.now().millisecondsSinceEpoch}';
 
     _startTimer();
     _startLocationTracking();
