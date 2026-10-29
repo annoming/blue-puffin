@@ -590,7 +590,7 @@ class TrainingPlanEngine {
       values.add(value);
     }
     if (values.length == 1) return values[0] * 60;
-    if (values.length == 2) return values[0] * 3600 + values[1] * 60;
+    if (values.length == 2) return values[0] * 60 + values[1];
     if (values.length == 3) {
       return values[0] * 3600 + values[1] * 60 + values[2];
     }
