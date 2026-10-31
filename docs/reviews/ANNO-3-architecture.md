@@ -37,4 +37,21 @@
 1. SDK 安装完成后补 `flutter analyze` 与 `flutter create .` 平台目录补齐的验证证据。
 2. 设计定稿（ANNO-10）整改与 ANNO-4 用户体系评审按串行队列依次释放。
 
+## 5. 冻结确认与编译验证补证（2026-10-31）
+
+**Ray 确认**：2026-10-31 14:50Z 在本 Issue 回复「同意」，M1 架构基线冻结生效。
+
+**验证环境**：Flutter 3.47.8 stable / Dart 3.13.7（本机已安装 SDK）；在干净 worktree 检出
+`origin/main` @ `3f6ec0b` 执行，不受其他成员未提交改动影响。
+
+| 验证项 | 命令 | 结果 |
+|---|---|---|
+| 静态分析 | `flutter pub get && flutter analyze` | **0 error**；61 warning（全部为 Isar `experimental_member_use` 与 Flutter 3.33+ `value`→`initialValue` 弃用提示）+ 3 info |
+| 单元测试 | `flutter test` | **13/13 通过**（plan 11、run 2） |
+
+**冻结基线更新**：`3f6ec0b`（原冻结基线 `2dfe576`，其间仅有功能修复与测试补充，未改变分层/选型/接口契约）。
+
+**仍未闭环（不阻塞 M1）**：仓库缺 `android/`、`ios/`、`web/` 平台目录，`flutter run` /
+`flutter build` 无法执行；需在交付前用 `flutter create .` 生成（不改业务代码，`.gitignore` 已预留平台忽略规则）。
+
 <!-- archive: ANNO-3, Leo, 2026-10-29 -->
